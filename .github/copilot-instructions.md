@@ -40,3 +40,36 @@ The implementation language is **Go (1.23+)**.
 - Do **not** add `vendor/` directory commits; use Go modules (`go.mod`/`go.sum`).
 - Do **not** store secrets or credentials in source code.
 - Do **not** use `os.Exit` outside of `main`.
+
+## Plan documents
+
+- **Always** create a plan document before implementing any non-trivial feature, fix, or refactor.
+- Plans are stored under `docs/plans/` in the repository root.
+- The filename must start with a zero-padded, three-digit incremental index followed by a short kebab-case description, e.g. `001-initial-setup.md`, `002-add-search-tool.md`. Determine the next index by counting existing files in `docs/plans/`.
+- Each plan file must follow this template:
+
+  ```markdown
+  # Plan: <short title>
+
+  **Created:** YYYY-MM-DD
+
+  ## Overview
+
+  <One or two sentences describing the goal of this plan.>
+
+  ## Steps
+
+  - [ ] Step 1 – description
+  - [ ] Step 2 – description
+  - [ ] Step 3 – description
+  ```
+
+- Check off steps (`- [x]`) as each one is implemented.
+- Commit the plan document in the same branch as the implementation work.
+
+## Branching and pull requests
+
+- **Never** commit directly to the `main` branch.
+- All changes (including plan documents) must be made on a dedicated feature/fix branch.
+- Branch names should follow the pattern `<type>/<short-description>`, e.g. `feat/search-tool`, `fix/rate-limit`.
+- Open a pull request targeting `main` for every branch. Include a short description and reference the relevant plan document.
